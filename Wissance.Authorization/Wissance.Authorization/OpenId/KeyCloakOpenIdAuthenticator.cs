@@ -29,14 +29,14 @@ namespace Wissance.Authorization.OpenId
             return tokenInfo;
         }
 
-        public async Task<UserInfo> GetUserInfoAsync(string accessToken)
+        public async Task<UserInfo> GetUserInfoAsync(string accessToken, string tokenType)
         {
             try
             {
                 string url = KeyCloakHelper.GetUserInfoUri(_config.BaseUrl, _config.Realm);
                 using (HttpClient httpClient = new HttpClient())
                 {
-                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, accessToken);
                     HttpResponseMessage response = await httpClient.GetAsync(url);
                     string responseBody = await response.Content.ReadAsStringAsync();
                     if (response.StatusCode != System.Net.HttpStatusCode.OK)
@@ -51,7 +51,7 @@ namespace Wissance.Authorization.OpenId
                         return null;
                     }
 
-                    // todo: umv: add pass e-mail to
+                    // todo: umv: add pass e-mail to userinfo
                     return new UserInfo(kcUserInfo.UserName, kcUserInfo.Name, kcUserInfo.Roles, kcUserInfo.IsEmailVerified, null);
                 }
             }
@@ -92,7 +92,7 @@ namespace Wissance.Authorization.OpenId
                         return null;
                     }
 
-                    return new TokenInfo(tokenData.SessionState, tokenData.AccessToken, tokenData.TokenExpiration, 
+                    return new TokenInfo(tokenData.SessionState, tokenData.TokenType, tokenData.AccessToken, tokenData.TokenExpiration, 
                                          tokenData.RefreshToken, tokenData.RefreshExpiration);
                 }
             }

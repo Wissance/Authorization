@@ -10,10 +10,11 @@ namespace Wissance.Authorization.Data
         {
         }
 
-        public TokenInfo(string session, string accessToken, int accessTokenExpiration, 
+        public TokenInfo(string session, string tokenType, string accessToken, int accessTokenExpiration, 
                          string refreshToken, int refreshTokenExpiration)
         {
             Session = session;
+            TokenType = tokenType;
             AccessToken = accessToken;
             AccessTokenExpiration = accessTokenExpiration;
             RefreshToken = refreshToken;
@@ -21,6 +22,7 @@ namespace Wissance.Authorization.Data
         }
 
         public string Session { get; set; }
+        public string TokenType { get; set; }
         public string AccessToken { get; set; }
         public int AccessTokenExpiration { get; set; }
         public string RefreshToken { get; set; }

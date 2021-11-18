@@ -9,7 +9,7 @@ namespace Wissance.Authorization.OpenId
     public interface IOpenIdAuthenticator
     {
         Task<TokenInfo> AuthenticateAsync(string userName, string password, string scope);
-        Task<UserInfo> GetUserInfoAsync(string accessToken);
+        Task<UserInfo> GetUserInfoAsync(string accessToken, string tokenType);
         Task<TokenInfo> RefreshTokenAsync(string refreshToken);
     }
 }

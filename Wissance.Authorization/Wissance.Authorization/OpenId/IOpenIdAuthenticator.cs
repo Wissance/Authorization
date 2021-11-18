@@ -7,7 +7,8 @@ namespace Wissance.Authorization.OpenId
 {
     public interface IOpenIdAuthenticator
     {
-        TokenInfo Authenticate(string baseUrl, IDictionary<string, string> formParameters);
-        UserInfo GetUserInfo(string baseUrl);
+        TokenInfo Authenticate(IDictionary<string, string> formParameters);
+        UserInfo GetUserInfo(string accessToken);
+        TokenInfo RefreshToken(string refreshToken);
     }
 }

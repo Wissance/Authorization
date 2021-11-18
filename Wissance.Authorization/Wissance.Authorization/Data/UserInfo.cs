@@ -10,15 +10,19 @@ namespace Wissance.Authorization.Data
         {
         }
 
-        public UserInfo(string session, string userName, string[] roles)
+        public UserInfo(string session, string userName, string[] roles, bool isEmailVerified, string email)
         {
             Session = session;
             UserName = userName;
             Roles = roles;
+            IsEmailVerified = isEmailVerified;
+            Email = email;
         }
 
         public string Session { get; set; }
         public string UserName { get; set; }
-        public string[] Roles { get; set; } 
+        public string[] Roles { get; set; }
+        public bool IsEmailVerified { get; set; }
+        public string Email { get; set; }
     }
 }

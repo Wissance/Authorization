@@ -7,12 +7,17 @@ namespace Wissance.Authorization.OpenId
 {
     public class KeyCloakOpenIdAuthenticator : IOpenIdAuthenticator
     {
-        public TokenInfo Authenticate(string baseUrl, IDictionary<string, string> formParameters)
+        public TokenInfo Authenticate(IDictionary<string, string> formParameters)
         {
             throw new NotImplementedException();
         }
 
-        public UserInfo GetUserInfo(string baseUrl)
+        public UserInfo GetUserInfo(string accessToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public TokenInfo RefreshToken(string refreshToken)
         {
             throw new NotImplementedException();
         }

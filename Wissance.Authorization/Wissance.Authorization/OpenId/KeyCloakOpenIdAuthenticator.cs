@@ -51,7 +51,7 @@ namespace Wissance.Authorization.OpenId
                         return null;
                     }
 
-                    // todo: umv: add pass e-mail to userinfo
+                    // todo: umv: add pass and parse e-mail to userinfo
                     return new UserInfo(kcUserInfo.UserName, kcUserInfo.Name, kcUserInfo.Roles, kcUserInfo.IsEmailVerified, null);
                 }
             }

@@ -25,7 +25,7 @@ namespace Wissance.Authorization.Extensions
                         options => { });
         }
 
-        public static void AddSwaggerWithKeyCloakPasswordAuthorization(this ServiceCollection services, KeyCloakServerConfig config,
+        public static void AddSwaggerWithKeyCloakPasswordAuthentication(this ServiceCollection services, KeyCloakServerConfig config,
                                                                        IDictionary<string, string> defaultScopes)
         {
             services.AddSwaggerGen(c =>

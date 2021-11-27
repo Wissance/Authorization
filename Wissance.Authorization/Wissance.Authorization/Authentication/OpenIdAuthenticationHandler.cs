@@ -42,7 +42,7 @@ namespace Wissance.Authorization.Authentication
                     return AuthenticateResult.Fail("Non supporting authorization scheme, expecting \"Bearer + token\"!");
                 }
 
-                string[] keyValueParts = authorizationKeyValue.Split(" ");
+                string[] keyValueParts = authorizationKeyValue.Split(new[]{' '});
                 if (keyValueParts.Length != 2)
                 {
                     return AuthenticateResult.Fail("Non supporting token format, if you feel that this is error please create issue on github");

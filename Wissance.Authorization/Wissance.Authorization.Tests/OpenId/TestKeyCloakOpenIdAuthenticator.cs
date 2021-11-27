@@ -68,10 +68,12 @@ namespace Wissance.Authorization.Tests.OpenId
         }
 
         [Theory]
-        [InlineData(TestUser, TestPassword, TestScope)]
-        public void TestTokenRefresh(string userName, string password, string scope)
+        [InlineData(TestUser, TestPassword, TestScope, true)]
+        [InlineData(TestUser, TestPassword, TestScope, false)]
+        public void TestTokenRefresh(string userName, string password, string scope, bool isPrivate)
         {
-            IOpenIdAuthenticator authenticator = new KeyCloakOpenIdAuthenticator(_testPrivateKeyCloakConfig, new LoggerFactory());
+            KeyCloakServerConfig config = isPrivate ? _testPrivateKeyCloakConfig : _testPublicKeyCloakConfig;
+            IOpenIdAuthenticator authenticator = new KeyCloakOpenIdAuthenticator(config, new LoggerFactory());
             TokenInfo token = GetToken(authenticator, userName, password, scope);
             Assert.NotNull(token);
             Task<TokenInfo> refreshTokenTask = authenticator.RefreshTokenAsync(token.RefreshToken);

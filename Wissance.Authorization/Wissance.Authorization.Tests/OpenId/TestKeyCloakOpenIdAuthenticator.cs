@@ -6,13 +6,14 @@ using Microsoft.Extensions.Logging;
 using Wissance.Authorization.Config;
 using Wissance.Authorization.Data;
 using Wissance.Authorization.OpenId;
+using Wissance.Authorization.Tests.Checkers;
 using Xunit;
 
 namespace Wissance.Authorization.Tests.OpenId
 {
     /// <summary>
     ///     WARNING This tests USES our WORKING service
-    ///     If there would be a lot of activity realm would be set off
+    ///     If there would be a lot of activity on a realm, it would be set off
     /// </summary>
     public class TestKeyCloakOpenIdAuthenticator
     {
@@ -48,6 +49,35 @@ namespace Wissance.Authorization.Tests.OpenId
             {
                 Assert.Null(token);
             }
+        }
+
+        [Theory]
+        [InlineData(TestUser, TestPassword, TestScope)]
+        public void TestGetUserInfo(string userName, string password, string scope)
+        {
+            IOpenIdAuthenticator authenticator = new KeyCloakOpenIdAuthenticator(_testPrivateKeyCloakConfig, new LoggerFactory());
+            TokenInfo token = GetToken(authenticator, userName, password, scope);
+            Assert.NotNull(token);
+            Task<UserInfo> getUserInfoTask = authenticator.GetUserInfoAsync(token.AccessToken, token.TokenType);
+            getUserInfoTask.Wait();
+            UserInfo actualUserInfo = getUserInfoTask.Result;
+            Assert.NotNull(actualUserInfo);
+            UserInfo expectedUserInfo = new UserInfo(actualUserInfo.Session, TestUser, "firstTestName lastTestName",
+                                                     null, false, null);
+            UserInfoChecker.Check(expectedUserInfo, actualUserInfo);
+        }
+
+        [Theory]
+        [InlineData(TestUser, TestPassword, TestScope)]
+        public void TestTokenRefresh(string userName, string password, string scope)
+        {
+            IOpenIdAuthenticator authenticator = new KeyCloakOpenIdAuthenticator(_testPrivateKeyCloakConfig, new LoggerFactory());
+            TokenInfo token = GetToken(authenticator, userName, password, scope);
+            Assert.NotNull(token);
+            Task<TokenInfo> refreshTokenTask = authenticator.RefreshTokenAsync(token.AccessToken);
+            refreshTokenTask.Wait();
+            TokenInfo refreshToken = refreshTokenTask.Result;
+            Assert.NotNull(refreshToken);
         }
 
         private TokenInfo GetToken(IOpenIdAuthenticator authenticator , string userName, string password, string scope)

@@ -74,10 +74,11 @@ namespace Wissance.Authorization.Tests.OpenId
             IOpenIdAuthenticator authenticator = new KeyCloakOpenIdAuthenticator(_testPrivateKeyCloakConfig, new LoggerFactory());
             TokenInfo token = GetToken(authenticator, userName, password, scope);
             Assert.NotNull(token);
-            Task<TokenInfo> refreshTokenTask = authenticator.RefreshTokenAsync(token.AccessToken);
+            Task<TokenInfo> refreshTokenTask = authenticator.RefreshTokenAsync(token.RefreshToken);
             refreshTokenTask.Wait();
-            TokenInfo refreshToken = refreshTokenTask.Result;
-            Assert.NotNull(refreshToken);
+            TokenInfo refreshedToken = refreshTokenTask.Result;
+            Assert.NotNull(refreshedToken);
+            Assert.Equal(token.Session, refreshedToken.Session);
         }
 
         private TokenInfo GetToken(IOpenIdAuthenticator authenticator , string userName, string password, string scope)

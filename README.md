@@ -1,2 +1,2 @@
-# KeyCloak.Security
-An unofficial adapters to use KeyCloak as Authentication and Authorization server
+# K Authorization
+An unofficial project to use **KeyCloak** and possibly others OpenIdServers **as Authentication and Authorization server**

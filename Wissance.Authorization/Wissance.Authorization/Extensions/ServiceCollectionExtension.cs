@@ -10,9 +10,9 @@ using Wissance.Authorization.OpenId;
 
 namespace Wissance.Authorization.Extensions
 {
-    public static class ServiceCollectionExtension
+    public static class ServiceCollectionExtensions
     {
-        public static void AddKeyCloak(this ServiceCollection services, KeyCloakServerConfig config)
+        public static void AddKeyCloak(this IServiceCollection services, KeyCloakServerConfig config)
         {
             ServiceProvider provider = services.BuildServiceProvider();
             ILoggerFactory loggerFactory = provider.GetService<ILoggerFactory>();
@@ -23,7 +23,7 @@ namespace Wissance.Authorization.Extensions
                         options => { });
         }
 
-        public static void AddSwaggerWithKeyCloakPasswordAuthentication(this ServiceCollection services, KeyCloakServerConfig config,
+        public static void AddSwaggerWithKeyCloakPasswordAuthentication(this IServiceCollection services, KeyCloakServerConfig config,
                                                                        IDictionary<string, string> defaultScopes)
         {
             services.AddSwaggerGen(c =>

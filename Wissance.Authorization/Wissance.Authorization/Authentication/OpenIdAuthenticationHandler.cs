@@ -36,8 +36,8 @@ namespace Wissance.Authorization.Authentication
                 }
                 string authorizationKeyValue = Request.Headers[AuthorizationHeader].ToString();
 
-                // 2. Check presense of Bearer Token
-                if (!authorizationKeyValue.ToLowerInvariant().Contains(TokenAuthorizationScheme))
+                // 2. Check presenсe of Bearer Token
+                if (!authorizationKeyValue.ToLowerInvariant().Contains(TokenAuthorizationScheme.ToLowerInvariant()))
                 {
                     return AuthenticateResult.Fail("Non supporting authorization scheme, expecting \"Bearer + token\"!");
                 }

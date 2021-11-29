@@ -72,7 +72,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 ```
 
 If you would like to use Role-based acces to controllers (we form Roles property (propper mapper have to be configured on a KeyCloak side)) use `[Authorize]` attribute on controllers, i.e.
-```
+```c#
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 

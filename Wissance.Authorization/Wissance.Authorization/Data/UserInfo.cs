@@ -10,8 +10,9 @@ namespace Wissance.Authorization.Data
         {
         }
 
-        public UserInfo(string session, string userName, string fullName, string[] roles, bool isEmailVerified, string email)
+        public UserInfo(string userId, string session, string userName, string fullName, string[] roles, bool isEmailVerified, string email)
         {
+            UserId = userId;
             Session = session;
             UserName = userName;
             FullName = fullName;
@@ -19,7 +20,8 @@ namespace Wissance.Authorization.Data
             IsEmailVerified = isEmailVerified;
             Email = email;
         }
-
+        
+        public string UserId { get; set; }
         public string Session { get; set; }
         public string UserName { get; set; }
         public string FullName { get; set; }

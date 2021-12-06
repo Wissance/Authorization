@@ -63,6 +63,11 @@ namespace Wissance.Authorization.Authentication
                     //new Claim(ClaimTypes.Email, null),
                 };
 
+                if (userInfo.UserId != null)
+                {
+                    //claims.Add(new Claim(ClaimTypes.));
+                }
+
                 if (userInfo.Email != null)
                     claims.Add(new Claim(ClaimTypes.Email, userInfo.Email));
                 // todo: umv: add Custom claims (EmailVerified & so on )

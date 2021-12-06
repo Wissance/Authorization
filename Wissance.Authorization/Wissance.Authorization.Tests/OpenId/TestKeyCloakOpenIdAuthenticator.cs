@@ -52,19 +52,26 @@ namespace Wissance.Authorization.Tests.OpenId
         }
 
         [Theory]
-        [InlineData(TestUser, TestPassword, TestScope)]
-        public void TestGetUserInfo(string userName, string password, string scope)
+        [InlineData(TestUser, TestPassword, TestScope, true, true)]
+        [InlineData(TestUser, TestPassword, TestScope, false, false)]
+        public void TestGetUserInfo(string userName, string password, string scope, bool isPrivateClient, bool userIdExists)
         {
-            IOpenIdAuthenticator authenticator = new KeyCloakOpenIdAuthenticator(_testPrivateKeyCloakConfig, new LoggerFactory());
+            KeyCloakServerConfig config = isPrivateClient ? _testPrivateKeyCloakConfig : _testPublicKeyCloakConfig;
+            IOpenIdAuthenticator authenticator = new KeyCloakOpenIdAuthenticator(config, new LoggerFactory());
             TokenInfo token = GetToken(authenticator, userName, password, scope);
             Assert.NotNull(token);
             Task<UserInfo> getUserInfoTask = authenticator.GetUserInfoAsync(token.AccessToken, token.TokenType);
             getUserInfoTask.Wait();
             UserInfo actualUserInfo = getUserInfoTask.Result;
             Assert.NotNull(actualUserInfo);
-            UserInfo expectedUserInfo = new UserInfo(actualUserInfo.Session, TestUser, "firstTestName lastTestName",
+            UserInfo expectedUserInfo = new UserInfo(actualUserInfo.UserId, actualUserInfo.Session, TestUser, "firstTestName lastTestName",
                                                      null, false, null);
             UserInfoChecker.Check(expectedUserInfo, actualUserInfo);
+            
+            if (userIdExists)
+            {
+                Assert.NotNull(expectedUserInfo.UserId);
+            }
         }
 
         [Theory]

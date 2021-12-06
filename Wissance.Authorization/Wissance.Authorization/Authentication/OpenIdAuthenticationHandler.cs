@@ -60,12 +60,11 @@ namespace Wissance.Authorization.Authentication
                 {
                     new Claim(ClaimTypes.NameIdentifier, userInfo.UserName),
                     new Claim(ClaimTypes.Name, userInfo.FullName)
-                    //new Claim(ClaimTypes.Email, null),
                 };
 
                 if (userInfo.UserId != null)
                 {
-                    //claims.Add(new Claim(ClaimTypes.));
+                    claims.Add(new Claim(Wissance.Authorization.Claims.ClaimTypes.UserId, userInfo.UserId));
                 }
 
                 if (userInfo.Email != null)

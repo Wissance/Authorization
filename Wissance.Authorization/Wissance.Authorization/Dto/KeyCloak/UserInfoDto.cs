@@ -12,9 +12,10 @@ namespace Wissance.Authorization.Dto.KeyCloak
 
         }
 
-        public UserInfoDto(string sub, bool isEmailVerified, string[] roles, string name, string userName,
+        public UserInfoDto(string id, string sub, bool isEmailVerified, string[] roles, string name, string userName,
                            string firstName, string lastName)
         {
+            Id = id;
             Sub = sub;
             IsEmailVerified = isEmailVerified;
             Roles = roles;
@@ -23,6 +24,9 @@ namespace Wissance.Authorization.Dto.KeyCloak
             FirstName = firstName;
             LastName = lastName;
         }
+        
+        [JsonProperty("id")]
+        public string Id { get; set; }
 
         [JsonProperty("sub")]
         public string Sub { get; set; }

@@ -102,7 +102,7 @@ and to `Configure(IApplicationBuilder app, IWebHostEnvironment env)` method:
 `_authConfig.Scopes` is array of strings (public string[] Scopes { get; set; }), by default _**Keycloak**_ works with _**profile**_ scope.
 var Scopes = new string[]{"profile"};
 
-!!! DON'T forget to add * or your app pase URI i.e. http://localhost:8421/* to **WebOrigin of Keycloak clietn settings** (subscribe to our medium because we are writing interesting articles and in particular about Authorization and Keycloak usage aspects: https://m-ushakov.medium.com/)
+!!! DON'T forget to add * or your app base URI i.e. http://localhost:8421/* to **WebOrigin of Keycloak client settings** (subscribe to our medium because we are writing interesting articles and in particular about Authorization and Keycloak usage aspects: https://m-ushakov.medium.com/)
 
 _Additional docs with images with examples will be soon_.
 

@@ -11,5 +11,6 @@ namespace Wissance.Authorization.OpenId
         Task<TokenInfo> AuthenticateAsync(string userName, string password, string scope);
         Task<UserInfo> GetUserInfoAsync(string accessToken, string tokenType);
         Task<TokenInfo> RefreshTokenAsync(string refreshToken);
+        Task<TokenInfo> GetTokenByAuthorizationCodeAsync(string authorizationCode, string redirectUri);
     }
 }

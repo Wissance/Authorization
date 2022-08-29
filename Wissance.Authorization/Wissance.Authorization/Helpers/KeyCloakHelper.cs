@@ -45,6 +45,26 @@ namespace Wissance.Authorization.Helpers
             return new FormUrlEncodedContent(body);
         }
 
+        public static FormUrlEncodedContent GetAccessTokenRequestBody(KeyCloakClientType clientType, string clientId,
+                                                                      string clientSecret, string redirectUri,
+                                                                      string authorizationCode)
+        {
+            IList<KeyValuePair<string, string>> body = new List<KeyValuePair<string, string>>()
+            {
+                new KeyValuePair<string, string>(AuthCode, authorizationCode),
+                new KeyValuePair<string, string>(ClientId, clientId),
+                new KeyValuePair<string, string>(RedirectUri, redirectUri),
+                new KeyValuePair<string, string>(GrantType, AuthCodeGrantType)
+            };
+
+            if (clientType == KeyCloakClientType.Confidential)
+            {
+                body.Add(new KeyValuePair<string, string>(ClientSecret, clientSecret));
+            }
+
+            return new FormUrlEncodedContent(body);
+        }
+
         public static FormUrlEncodedContent GetRefreshTokenRequestBody(KeyCloakClientType clientType, string clientId,
                                                                        string clientSecret, string refreshToken)
         {
@@ -79,8 +99,11 @@ namespace Wissance.Authorization.Helpers
         private const string Username = "username";
         private const string Password = "password";
         private const string Scope = "scope";
+        private const string AuthCode = "code";
+        private const string RedirectUri = "redirect_uri";
         public const string ProfileScope = "profile";
         public const string PasswordGrantType = "password";
+        public const string AuthCodeGrantType = "authorization_code";
         public const string TokenRefreshGrantType = "refresh_token";
 
     }

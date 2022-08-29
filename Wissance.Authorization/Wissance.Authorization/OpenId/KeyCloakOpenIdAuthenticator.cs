@@ -29,6 +29,14 @@ namespace Wissance.Authorization.OpenId
             return tokenInfo;
         }
 
+        public async Task<TokenInfo> GetTokenByAuthorizationCodeAsync(string authorizationCode, string redirectUri)
+        {
+            FormUrlEncodedContent content = KeyCloakHelper.GetAccessTokenRequestBody(_config.ClientType,
+                                            _config.ClientId, _config.ClientSecret, redirectUri, authorizationCode);
+            TokenInfo tokenInfo = await GetTokenAsync(_config.Realm, content, "get access token by authorization code");
+            return tokenInfo;
+        }
+
         public async Task<UserInfo> GetUserInfoAsync(string accessToken, string tokenType)
         {
             try

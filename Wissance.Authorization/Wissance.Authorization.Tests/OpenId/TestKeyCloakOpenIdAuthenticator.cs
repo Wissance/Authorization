@@ -65,7 +65,7 @@ namespace Wissance.Authorization.Tests.OpenId
             UserInfo actualUserInfo = getUserInfoTask.Result;
             Assert.NotNull(actualUserInfo);
             UserInfo expectedUserInfo = new UserInfo(actualUserInfo.UserId, actualUserInfo.Session, TestUser, "firstTestName lastTestName",
-                                                     null, false, null);
+                                                     new []{"client_test_role"}, false, null);
             UserInfoChecker.Check(expectedUserInfo, actualUserInfo);
             
             if (userIdExists)

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="078ea3e0-d4b0-4ccb-bc7b-c0b4e114ba44" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8517f607c12a4b508364c3f896f0fe6f11da8/d0/2f518e71/Assert.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2EIjUmbCEAzd9Vyf6lbRBUz9Gud" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="078ea3e0-d4b0-4ccb-bc7b-c0b4e114ba44" name="Changes" comment="" />
+      <created>1662290018527</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1662290018527</updated>
+      <workItem from="1662290078797" duration="5297000" />
+      <workItem from="1679154215593" duration="1682000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Wissance.Authorization.Tests/OpenId/TestKeyCloakOpenIdAuthenticator.cs</url>
+          <line>70</line>
+          <properties documentPath="C:\Users\michael\Projects\Wissance\Authorization\Wissance.Authorization\Wissance.Authorization.Tests\OpenId\TestKeyCloakOpenIdAuthenticator.cs" initialLine="70" containingFunctionPresentation="method 'TestGetUserInfo'">
+            <startOffsets>
+              <option value="3119" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3136" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Wissance.Authorization.Tests/OpenId/TestKeyCloakOpenIdAuthenticator.cs</url>
+          <line>68</line>
+          <properties documentPath="C:\Users\michael\Projects\Wissance\Authorization\Wissance.Authorization\Wissance.Authorization.Tests\OpenId\TestKeyCloakOpenIdAuthenticator.cs" initialLine="68" containingFunctionPresentation="method 'TestGetUserInfo'">
+            <startOffsets>
+              <option value="3037" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3093" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

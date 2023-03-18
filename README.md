@@ -1,22 +1,29 @@
 # Wissance.Authorization Project
-C# class library that could be used in any type of project (Web, Desktop & so on)
-An unofficial project to use **KeyCloak** and possibly others OpenIdServers **as Authentication and Authorization server**
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/wissance/Authorization?style=plastic) 
+![GitHub issues](https://img.shields.io/github/issues/wissance/Authorization?style=plastic)
+![GitHub Release Date](https://img.shields.io/github/release-date/wissance/Authorization) 
+![GitHub release (latest by date)](https://img.shields.io/github/downloads/wissance/Authorization/v1.1.3/total?style=plastic)
+
+![LabWatcher: is automated Mossbauer laboratory control toolset](/img/cover.png)
+
+C# class library that helps to add authorization into **any** type of applycation (`Web`, `Desktop` and others easily). Supports `OpenId-Connect` `private` and `public` authentication using ***token* ** and ***authorization code*** flows in `KeyCloak`. Works with any version of `KeyCloak`, supporting old platforms (**netcore 3.1+**, **netstandard2.0+**).
+
 
 ## Functionality
-* Easily integrate **KeyCloak as authorization server** into application'
+* Easily integrate **KeyCloak as authorization server** into any application (`Web`, `Desktop` or `Console`)
 * Protect **swagger with KeyCloak** Authorization
 
 ## Example of usage
 ### 1. Authentication & Authorization on Keycloak
 
 don't forget to add this usage:
-```c#
+```csharp
 using Wissance.Authorization.Config;
 using Wissance.Authorization.Extensions;
 ```
 
 In my Startup.cs i have _ConfigureService_ method that calls ConfigureWeb:
-```C#
+```csharp
 public void ConfigureServices(IServiceCollection services)
 {
      // Configure subsystems before ...
@@ -55,7 +62,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 
 if you would like to just `Restrict` access to you controllers to only Autenticated users (without Claims check) your could add following (i suppose that Controllers configuretion is implemented in upper mentioned `ConfigureWeb(IServiceCollection services)` method:
 
-```c#
+```csharp
 services.AddControllers(config =>
 {
     AuthorizationPolicy policy = new AuthorizationPolicyBuilder()
@@ -66,13 +73,13 @@ services.AddControllers(config =>
 ```
 this requires to add a couple of using:
 
-```c#
+```csharp
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 ```
 
 If you would like to use Role-based acces to controllers (we form Roles property (propper mapper have to be configured on a KeyCloak side)) use `[Authorize]` attribute on controllers, i.e.
-```c#
+```csharp
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
@@ -88,14 +95,22 @@ using Microsoft.AspNetCore.Authorization;
 
 See the structure of Startup class in part related to Keycloak, so to configure Swagger with Keycloak add following line to you `ConfigureWeb(IServiceCollection services` method:
 
-```c#
+```csharp
 IDictionary<string, string> scopes = _authConfig.Scopes.Select(s => s).ToDictionary(k => k, v => v);
-services.AddSwaggerWithKeyCloakPasswordAuthentication(authConfig, scopes);
+Action<SwaggerGenOptions> generalOptionSwaggerConfigure = options =>
+{
+    options.MapType<TimeSpan>(() => new OpenApiSchema
+    {
+        Type = "string",
+        Example = new OpenApiString("00:00:00")
+     });
+};
+services.AddSwaggerWithKeyCloakPasswordAuthentication(authConfig, generalOptionSwaggerConfigure, scopes);
 ```
 
 and to `Configure(IApplicationBuilder app, IWebHostEnvironment env)` method:
 
-```c#
+```csharp
    app.UseSwaggerWithKeyCloakAuthentication("Wissance.BusinessTools", BuildKeyCloakConfig(), _authConfig.Scopes);
 ```
 

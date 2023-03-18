@@ -85,11 +85,11 @@ namespace Wissance.Authorization.Helpers
 
         // URL templates
         private const string TokenEndpointTemplate = "{0}/auth/realms/{1}/protocol/openid-connect/token";
-        // i.e. http://auth.waveslogic.com:8080/auth/realms/master/protocol/openid-connect/token"
+        // i.e. http://auth.wissance-test.com:8080/auth/realms/master/protocol/openid-connect/token"
         private const string UserInfoEndpointTemplate = "{0}/auth/realms/{1}/protocol/openid-connect/userinfo";
-        // i.e. http://auth.waveslogic.com:8080/auth/realms/master/protocol/openid-connect/userinfo
+        // i.e. http://auth.wissance-test.com:8080/auth/realms/master/protocol/openid-connect/userinfo
         private const string AuthorizationEndpointTemplate = "{0}/auth/realms/{1}/protocol/openid-connect/auth";
-        // i.e. http://auth.waveslogic.com:8080/auth/realms/master/protocol/openid-connect/auth
+        // i.e. http://auth.wissance-test.com:8080/auth/realms/master/protocol/openid-connect/auth
 
         // Body parameters
         private const string ClientId = "client_id";

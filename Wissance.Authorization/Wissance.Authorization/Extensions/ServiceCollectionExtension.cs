@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using Wissance.Authorization.Authentication;
 using Wissance.Authorization.Config;
 using Wissance.Authorization.Helpers;
@@ -24,10 +25,12 @@ namespace Wissance.Authorization.Extensions
         }
 
         public static void AddSwaggerWithKeyCloakPasswordAuthentication(this IServiceCollection services, KeyCloakServerConfig config,
-                                                                       IDictionary<string, string> defaultScopes)
+                                                                        Action<SwaggerGenOptions> additionalSwaggerCfgAction,
+                                                                        IDictionary<string, string> defaultScopes)
         {
             services.AddSwaggerGen(c =>
             {
+                additionalSwaggerCfgAction(c);
                 c.AddSecurityDefinition(SwaggerSecurityDefinitionName, new OpenApiSecurityScheme
                 {
                     Type = SecuritySchemeType.OAuth2,

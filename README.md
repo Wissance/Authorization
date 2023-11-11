@@ -2,7 +2,7 @@
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/wissance/Authorization?style=plastic) 
 ![GitHub issues](https://img.shields.io/github/issues/wissance/Authorization?style=plastic)
 ![GitHub Release Date](https://img.shields.io/github/release-date/wissance/Authorization) 
-![GitHub release (latest by date)](https://img.shields.io/github/downloads/wissance/Authorization/v1.1.3/total?style=plastic)
+![GitHub release (latest by date)](https://img.shields.io/github/downloads/wissance/Authorization/v1.1.4/total?style=plastic)
 
 ![LabWatcher: is automated Mossbauer laboratory control toolset](/img/cover.png)
 

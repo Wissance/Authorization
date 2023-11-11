@@ -90,6 +90,18 @@ namespace Wissance.Authorization.Tests.OpenId
             Assert.Equal(token.Session, refreshedToken.Session);
         }
 
+        /*[Fact]
+        public void TestGetUserInfoFromBadSsl()
+        {
+            IOpenIdAuthenticator authenticator = new KeyCloakOpenIdAuthenticator(_keyCloakOnBadSslConfig , new LoggerFactory());
+            TokenInfo token = GetToken(authenticator, "adm", "123", TestScope);
+            Assert.NotNull(token);
+            Task<UserInfo> getUserInfoTask = authenticator.GetUserInfoAsync(token.AccessToken, token.TokenType);
+            getUserInfoTask.Wait();
+            UserInfo actualUserInfo = getUserInfoTask.Result;
+            Assert.NotNull(actualUserInfo);
+        }*/
+
         private TokenInfo GetToken(IOpenIdAuthenticator authenticator , string userName, string password, string scope)
         {
             Task<TokenInfo> authenticateTask = authenticator.AuthenticateAsync(userName, password, scope);

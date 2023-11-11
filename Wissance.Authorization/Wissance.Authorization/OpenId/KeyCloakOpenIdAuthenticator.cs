@@ -42,7 +42,12 @@ namespace Wissance.Authorization.OpenId
             try
             {
                 string url = KeyCloakHelper.GetUserInfoUri(_config.BaseUrl, _config.Realm);
-                using (HttpClient httpClient = new HttpClient())
+                HttpClientHandler handler = new HttpClientHandler() 
+                { 
+                    ClientCertificateOptions = ClientCertificateOption.Manual,
+                    ServerCertificateCustomValidationCallback = (httpRequestMessage, cert, cetChain, policyErrors) => true
+                };
+                using (HttpClient httpClient = new HttpClient(handler))
                 {
                     httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, accessToken);
                     HttpResponseMessage response = await httpClient.GetAsync(url);
@@ -84,7 +89,13 @@ namespace Wissance.Authorization.OpenId
             try
             {
                 string url = KeyCloakHelper.GetTokenUri(_config.BaseUrl, realm);
-                using (HttpClient httpClient = new HttpClient())
+                HttpClientHandler handler = new HttpClientHandler() 
+                { 
+                    ClientCertificateOptions = ClientCertificateOption.Manual,
+                    ServerCertificateCustomValidationCallback = (httpRequestMessage, cert, cetChain, policyErrors) => true
+                };
+                
+                using (HttpClient httpClient = new HttpClient(handler))
                 {
                     HttpResponseMessage response = await httpClient.PostAsync(url, formContent);
                     string responseBody = await response.Content.ReadAsStringAsync();
@@ -111,7 +122,7 @@ namespace Wissance.Authorization.OpenId
                 return null;
             }
         }
-
+        
         private readonly KeyCloakServerConfig _config;
         private readonly ILogger<KeyCloakOpenIdAuthenticator> _logger;
     }
